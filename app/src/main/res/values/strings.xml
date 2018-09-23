@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">PokemonLookup</string>
+  <string name="number_entry_hint">00</string>
+  <string name="number_entry_instructions">enter a Pokédex number</string>
 </resources>
