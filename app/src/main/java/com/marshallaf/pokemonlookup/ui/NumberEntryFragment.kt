@@ -3,7 +3,6 @@ package com.marshallaf.pokemonlookup.ui
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +52,7 @@ class NumberEntryFragment : Fragment() {
 
     disposable = viewModel.getSearchResult()
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { Log.d("NumberEntryFragment", "result is ${it.name}") }
+        .subscribe { (activity as MainActivity).navigateToPokemonDisplay(it.number) }
   }
 
   override fun onStop() {

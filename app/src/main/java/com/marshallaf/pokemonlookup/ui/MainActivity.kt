@@ -15,4 +15,11 @@ class MainActivity : AppCompatActivity() {
           .commit()
     }
   }
+
+  fun navigateToPokemonDisplay(number: Int) {
+    val fragment = PokemonDisplayFragment.newInstance(number)
+    supportFragmentManager.beginTransaction()
+        .replace(android.R.id.content, fragment)
+        .commit()
+  }
 }

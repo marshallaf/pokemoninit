@@ -5,6 +5,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class PokemonResponse(
+    @Json(name = "id") val number: Int,
     @Json(name = "name") val name: String?,
     @Json(name = "height") val height: Int,
     @Json(name = "weight") val weight: Int,

@@ -7,17 +7,25 @@ import javax.inject.Singleton
 
 @Singleton
 class PokemonRepository @Inject constructor(
-    val client: PokemonClient
+    private val client: PokemonClient
 ) {
 
   companion object {
-    val ERROR_POKEMON = PokemonData("", "", "", -1, -1)
+    val ERROR_POKEMON = PokemonData(-1, "", "", "", -1, -1)
   }
 
-  lateinit var pokemonData: PokemonData
+  private var cachedPokemon: PokemonData? = null
+
+  private fun fetchPokemonInformation(number: Int): Single<PokemonData> {
+    return client.getPokemonInformation(number)
+        .doOnSuccess { cachedPokemon = it }
+  }
 
   fun getPokemonInformation(number: Int): Single<PokemonData> {
-    return client.getPokemonInformation(number)
-        .doOnSuccess { pokemonData = it }
+    return if (cachedPokemon?.number == number) {
+      Single.just(cachedPokemon)
+    } else {
+      fetchPokemonInformation(number)
+    }
   }
 }

@@ -12,6 +12,6 @@ class NetworkPokemonMapper @Inject constructor() {
         ?.joinToString(" ") { it.capitalize() } ?: ""
     val type = pokemonResponse.types
         ?.joinToString(", ") { it.typeSubresponse?.name.toString() } ?: ""
-    return PokemonData(name, pokemonResponse.images?.imageUrl ?: "", type, pokemonResponse.weight, pokemonResponse.height)
+    return PokemonData(pokemonResponse.number, name, pokemonResponse.images?.imageUrl ?: "", type, pokemonResponse.weight, pokemonResponse.height)
   }
 }
