@@ -24,9 +24,12 @@ class NumberEntryViewModel @Inject constructor(
   }
 
   fun searchPokemonNumber(number: Int) {
-    repository.getPokemonInformation(number)
+    disposable = repository.getPokemonInformation(number)
         .map {
-          if (it == ERROR_POKEMON) SearchResult.FAILURE else SearchResult.SUCCESS
+          when (it) {
+            ERROR_POKEMON -> SearchResult.FAILURE
+            else -> SearchResult.SUCCESS
+          }
         }
         .subscribe(resultSubject::onNext)
   }

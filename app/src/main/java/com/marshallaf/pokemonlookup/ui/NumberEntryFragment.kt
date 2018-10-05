@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import com.marshallaf.pokemonlookup.R
 import com.marshallaf.pokemonlookup.di.ViewModelFactory
 import com.marshallaf.pokemonlookup.viewmodel.NumberEntryViewModel
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_number_entry.*
 import javax.inject.Inject
 
 class NumberEntryFragment : Fragment() {
@@ -30,6 +32,20 @@ class NumberEntryFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.fragment_number_entry, container, false)
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    number_entry.setOnEditorActionListener { view, actionId, event ->
+      when (actionId) {
+        EditorInfo.IME_ACTION_SEARCH -> {
+          viewModel.searchPokemonNumber(view.text.toString().toInt())
+          true
+        }
+        else -> false
+      }
+    }
   }
 
   override fun onStart() {
