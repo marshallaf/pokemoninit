@@ -2,4 +2,6 @@
   <string name="app_name">PokemonLookup</string>
   <string name="number_entry_hint">00</string>
   <string name="number_entry_instructions">enter a Pokédex number</string>
+  <string name="weight_kilograms">%.2f kg</string>
+  <string name="height_meters">%.2f m</string>
 </resources>

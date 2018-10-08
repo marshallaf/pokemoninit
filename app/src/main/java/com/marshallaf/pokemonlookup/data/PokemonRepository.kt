@@ -11,7 +11,7 @@ class PokemonRepository @Inject constructor(
 ) {
 
   companion object {
-    val ERROR_POKEMON = PokemonData(-1, "", "", "", -1, -1)
+    val ERROR_POKEMON = PokemonData(-1, "", "", "", -1.0, -1.0)
   }
 
   private var cachedPokemon: PokemonData? = null

@@ -68,8 +68,8 @@ class PokemonDisplayFragment : Fragment() {
   private fun populateData(pokemon: PokemonData) {
     name.text = pokemon.name
     type.text = pokemon.type
-    weight.text = pokemon.weight.toString()
-    height.text = pokemon.height.toString()
+    weight.text = getString(R.string.weight_kilograms, pokemon.weight)
+    height.text = getString(R.string.height_meters, pokemon.height)
     GlideApp.with(this)
         .load(pokemon.imageUrl)
         .listener(object : RequestListener<Drawable> {

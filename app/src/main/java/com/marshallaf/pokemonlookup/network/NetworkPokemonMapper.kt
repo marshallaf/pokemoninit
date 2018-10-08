@@ -18,6 +18,8 @@ class NetworkPokemonMapper @Inject constructor() {
         ?.joinToString(" ") { it.capitalize() } ?: ""
     val type = pokemonResponse.types
         ?.joinToString(", ") { it.typeSubresponse?.name.toString() } ?: ""
-    return PokemonData(pokemonResponse.number, name, pokemonResponse.images?.imageUrl ?: "", type, pokemonResponse.weight, pokemonResponse.height)
+    val weight: Double = pokemonResponse.weight / 10.0
+    val height: Double = pokemonResponse.height / 10.0
+    return PokemonData(pokemonResponse.number, name, pokemonResponse.images?.imageUrl ?: "", type, weight, height)
   }
 }

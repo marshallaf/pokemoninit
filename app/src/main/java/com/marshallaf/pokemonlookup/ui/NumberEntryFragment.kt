@@ -36,10 +36,10 @@ class NumberEntryFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    number_entry.setOnEditorActionListener { view, actionId, event ->
+    number_entry.setOnEditorActionListener { editText, actionId, _ ->
       when (actionId) {
         EditorInfo.IME_ACTION_SEARCH -> {
-          viewModel.searchPokemonNumber(view.text.toString().toInt())
+          viewModel.searchPokemonNumber(editText.text.toString().toInt())
           true
         }
         else -> false
