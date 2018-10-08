@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     val fragment = PokemonDisplayFragment.newInstance(number)
     supportFragmentManager.beginTransaction()
         .replace(android.R.id.content, fragment)
+        .addToBackStack(null)
         .commit()
   }
 }
