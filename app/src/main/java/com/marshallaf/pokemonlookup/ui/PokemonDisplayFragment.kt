@@ -1,13 +1,19 @@
 package com.marshallaf.pokemonlookup.ui
 
 import android.arch.lifecycle.ViewModelProviders
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.marshallaf.pokemonlookup.R
 import com.marshallaf.pokemonlookup.data.PokemonData
+import com.marshallaf.pokemonlookup.di.GlideApp
 import com.marshallaf.pokemonlookup.di.ViewModelFactory
 import com.marshallaf.pokemonlookup.viewmodel.PokemonDisplayViewModel
 import dagger.android.support.AndroidSupportInjection
@@ -15,6 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_pokemon_display.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class PokemonDisplayFragment : Fragment() {
@@ -63,6 +70,21 @@ class PokemonDisplayFragment : Fragment() {
     type.text = pokemon.type
     weight.text = pokemon.weight.toString()
     height.text = pokemon.height.toString()
+    GlideApp.with(this)
+        .load(pokemon.imageUrl)
+        .listener(object : RequestListener<Drawable> {
+          override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+            Timber.d("Loading image unsuccessful for imageUrl: %s", pokemon.imageUrl)
+            return false
+          }
+
+          override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+            Timber.d("Loading image successful")
+            return false
+          }
+
+        })
+        .into(sprite)
   }
 
   override fun onStop() {
