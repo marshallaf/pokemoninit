@@ -2,12 +2,14 @@ package com.marshallaf.pokemonlookup.ui
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.marshallaf.pokemonlookup.R
+import com.marshallaf.pokemonlookup.data.PokemonRepository.Companion.ERROR_POKEMON
 import com.marshallaf.pokemonlookup.di.ViewModelFactory
 import com.marshallaf.pokemonlookup.viewmodel.NumberEntryViewModel
 import dagger.android.support.AndroidSupportInjection
@@ -50,9 +52,17 @@ class NumberEntryFragment : Fragment() {
   override fun onStart() {
     super.onStart()
 
+    number_entry.text.clear()
     disposable = viewModel.getSearchResult()
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { (activity as MainActivity).navigateToPokemonDisplay(it.number) }
+        .subscribe {
+          if (it != ERROR_POKEMON) {
+            (activity as MainActivity).navigateToPokemonDisplay(it.number)
+          } else {
+            KeyboardUtil.hide(requireActivity())
+            Snackbar.make(requireActivity().findViewById(android.R.id.content), R.string.error_retrieving_entry, Snackbar.LENGTH_SHORT).show()
+          }
+        }
   }
 
   override fun onStop() {

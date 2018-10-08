@@ -4,4 +4,5 @@
   <string name="number_entry_instructions">enter a Pokédex number</string>
   <string name="weight_kilograms">%.2f kg</string>
   <string name="height_meters">%.2f m</string>
+  <string name="error_retrieving_entry">Error retrieving Pokemon entry.</string>
 </resources>
