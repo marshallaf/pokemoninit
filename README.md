@@ -16,7 +16,7 @@ The network layer also depends on the data layer and is responsible for fetching
 
 Since the UI layer and network layer are not dependencies of other layers, if the APIs of Android or the PokéAPI were updated, only the corresponding layer would need to change. In most cases, the other layers could remain untouched. This allows the application's code to easily adapt to changing externalities, without restructuring the entire application.
 
-Note that while the "layers" in this application are not actually separated into distinct modules, their current dependency structure would allow them to be without major changes to the source.
+Note that while the "layers" in this application are not actually separated into distinct modules, their current dependency structure would allow them to be without major changes to the source. The most significant change would be for the data layer to depend on interfaces that were implemented by classes in the network and UI layers, instead of using those classes directly as is done currently for simplicity.
 
 ## Technologies used
 * [Kotlin](https://kotlinlang.org/)
