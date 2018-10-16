@@ -2,8 +2,8 @@
 
 A simple demonstration of clean architecture in an Android application. Look up a Pokemon by number and see a very grainy sprite and some simple stats, powered by [PokéAPI](https://pokeapi.co)!
 
-<img src="https://github.com/marshallaf/pokemoninit/blob/master/docs/number_entry_screen.png" alt="image of pokemon number entry screen" width="300">
-<img src="https://github.com/marshallaf/pokemoninit/blob/master/docs/pokemon_display_screen.png" alt="image of pokemon display screen" width="300">
+
+<img src="https://github.com/marshallaf/pokemoninit/blob/master/docs/number_entry_screen.png" alt="image of pokemon number entry screen" width="300"> <img src="https://github.com/marshallaf/pokemoninit/blob/master/docs/pokemon_display_screen.png" alt="image of pokemon display screen" width="300">
 
 ## Architecture
 There are three main separations of responsibilities in this app: **data**, **UI**, and **network**.
