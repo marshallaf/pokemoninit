@@ -8,7 +8,7 @@ A simple demonstration of clean architecture in an Android application. Look up 
 ## Architecture
 There are three main separations of responsibilities in this app: **data**, **UI**, and **network**.
 
-The data layer is concerned only with data retrieval and serving. It has no knowledge of the other layers - it only knows that there are consumers and providers of its data.
+The data layer is concerned only with data retrieval and serving. It has no knowledge of the other layers' implementations - it only knows that there are consumers and providers of its data.
 
 The UI layer depends on the data layer and is primarily responsible for displaying data to the user. In addition to this, other Android-specific responsibilities are handled within this layer, such as Activity/Fragment lifecycle and navigation.
 
